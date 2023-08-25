@@ -95,7 +95,7 @@ def Buildb():
             return
     for tsvfile in os.walk(dbpath).__next__()[2]: #iterate on all files inside the directory
         tmpdf = pd.read_csv(dbpath + '/' + tsvfile, sep='\t')
-        df = df.append(tmpdf, ignore_index=True)
+        df = pd.concat([tmpdf, df])
     Cleandb()
     df.to_pickle(dirpath + '/db.pkl')
 
